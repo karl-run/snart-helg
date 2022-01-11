@@ -1,0 +1,12 @@
+.chartContainer {
+    width: 100%;
+    height: 96px;
+    background-color: red;
+
+    display: flex;
+}
+
+.day {
+    border: 1px solid blue;
+    flex: 1 0 auto;
+}
