@@ -4,11 +4,10 @@
     position: relative;
 
     display: flex;
-    border: 1px solid #ff99ff;
 }
 
 .monday {
-    background: url('./images/angery.png') no-repeat center center;
+    background: url('./images/meow_fat.gif') no-repeat center center;
 }
 
 .tuesday {
@@ -28,7 +27,6 @@
 }
 
 .day {
-    border-right: 1px solid #ff99ff;
     flex: 1 0 0.142857143%;
     display: flex;
     justify-content: center;

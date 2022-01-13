@@ -18,7 +18,6 @@ function ProgressCat({ progress }: Props): JSX.Element {
           left: `${progress}%`,
         }}
       >
-        <div className={styles.line} />
         <div className={styles.cat}>
           <div className={styles.nyanHead}>
             <Image src={nyanHead} alt="nyan cat" />

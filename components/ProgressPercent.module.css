@@ -11,6 +11,10 @@
     width: 0;
 }
 
+.dayName {
+    white-space: nowrap;
+}
+
 .progressGraph {
     width: 100px;
 }

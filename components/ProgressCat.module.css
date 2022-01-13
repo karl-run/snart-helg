@@ -9,14 +9,6 @@
     top: 0;
 }
 
-.line {
-    position: absolute;
-    top: 48px;
-    width: 2px;
-    height: 96px;
-    background-color: #ff99ff;
-}
-
 .cat {
     position: absolute;
     display: flex;
