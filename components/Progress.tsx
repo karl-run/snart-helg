@@ -26,8 +26,6 @@ const Progress = (): JSX.Element => {
   useLayoutEffect(() => {
     if (rootRef.current == null || containerRef.current == null) return;
 
-    console.log(containerRef.current.getBoundingClientRect().width);
-    console.log(rootRef.current.getBoundingClientRect().width);
     rootRef.current.scrollLeft =
       (diffFromStart / diffBetweenStartAndEnd) * containerRef.current.getBoundingClientRect().width -
       (rootRef.current.getBoundingClientRect().width / 2);

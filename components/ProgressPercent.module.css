@@ -5,6 +5,10 @@
     align-items: center;
     margin-bottom: 52px;
     gap: 16px;
+
+    position: sticky;
+    left: 50%;
+    width: 0;
 }
 
 .progressGraph {
