@@ -42,7 +42,7 @@ function useTime() {
       setState((i) => i + 1);
     },
     // Rerender every 5 minutes
-    30000,
+    300000,
   );
 
   return useMemo(() => {

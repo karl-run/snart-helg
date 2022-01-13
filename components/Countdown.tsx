@@ -1,5 +1,5 @@
-import React, { CSSProperties } from "react";
-import { formatDistanceToNowStrict } from "date-fns";
+import React from "react";
+import { differenceInSeconds, formatDistanceToNowStrict } from "date-fns";
 import { nb } from "date-fns/locale";
 import cn from "classnames";
 
@@ -10,7 +10,9 @@ interface Props {
   className?: string;
 }
 
-const Countdown = ({ className, fridayEow }: Props): JSX.Element => {
+const Countdown = ({ className, fridayEow }: Props): JSX.Element | null => {
+  if (differenceInSeconds(fridayEow, new Date()) < 0) return null;
+
   const timeLeft = formatDistanceToNowStrict(fridayEow, { locale: nb });
 
   return <div className={cn(styles.root, className)}>Det er {timeLeft} til helg</div>;
