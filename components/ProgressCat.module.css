@@ -1,0 +1,38 @@
+.root {
+    width: 100%;
+    position: relative;
+    height: 48px;
+}
+
+.positioning {
+    position: absolute;
+    top: 0;
+}
+
+.line {
+    position: absolute;
+    top: 48px;
+    width: 2px;
+    height: 96px;
+    background-color: #ff99ff;
+}
+
+.cat {
+    position: absolute;
+    display: flex;
+}
+
+.nyanHead {
+    width: 70px;
+    position: absolute;
+    left: -52px;
+}
+
+.nyanTail {
+    position: absolute;
+    left: -52px;
+    top: 0;
+    background: url('./images/nyan_tail.gif') repeat-x right;
+    background-size: contain;
+    height: 39px;
+}

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Chart from '../components/Chart'
-import ProgressMan from '../components/ProgressMan'
+
+import Progress from '../components/Progress'
 import styles from './index.module.css'
 
 const Home: NextPage = () => {
@@ -14,8 +14,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <ProgressMan />
-        <Chart />
+          <Progress />
       </main>
     </div>
   )

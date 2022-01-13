@@ -1,0 +1,8 @@
+.root {
+    width: 100vw;
+    overflow: auto;
+}
+
+.scrollArea {
+    min-width: 690px;
+}

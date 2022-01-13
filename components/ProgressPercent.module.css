@@ -1,0 +1,12 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 52px;
+    gap: 16px;
+}
+
+.progressGraph {
+    width: 100px;
+}
