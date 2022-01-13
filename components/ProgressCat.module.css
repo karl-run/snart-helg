@@ -1,30 +1,38 @@
 .root {
-    width: 100%;
-    position: relative;
-    height: 48px;
+  width: 100%;
+  position: relative;
+  height: 48px;
 }
 
 .positioning {
-    position: absolute;
-    top: 0;
+  position: absolute;
+  top: 0;
+}
+
+.countdown {
+  position: relative;
+  width: 80px;
+  top: -52px;
+  left: 75px;
+  font-size: 0.8rem;
 }
 
 .cat {
-    position: absolute;
-    display: flex;
+  position: absolute;
+  display: flex;
 }
 
 .nyanHead {
-    width: 70px;
-    position: absolute;
-    left: -52px;
+  width: 70px;
+  position: absolute;
+  left: -52px;
 }
 
 .nyanTail {
-    position: absolute;
-    left: -52px;
-    top: 0;
-    background: url('./images/nyan_tail.gif') repeat-x right;
-    background-size: contain;
-    height: 39px;
+  position: absolute;
+  left: -52px;
+  top: 0;
+  background: url("./images/nyan_tail.gif") repeat-x right;
+  background-size: contain;
+  height: 39px;
 }

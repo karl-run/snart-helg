@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 import no from "date-fns/locale/nb";
-import { add, differenceInSeconds, endOfWeek, parseISO, startOfWeek } from "date-fns";
+import { add, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
 
 import ProgressCat from "./ProgressCat";
 import Chart from "./Chart";
@@ -35,7 +35,7 @@ const Progress = (): JSX.Element => {
     <div ref={rootRef} className={styles.root}>
       <div ref={containerRef} className={styles.scrollArea}>
         <ProgressPercent feelingProgress={clamp((diffFromTuesday / diffBetweenTuesdayAndEow) * 100)} />
-        <ProgressCat progress={(diffFromStart / diffBetweenStartAndEnd) * 100} />
+        <ProgressCat progress={(diffFromStart / diffBetweenStartAndEnd) * 100} fridayEow={fridayEow} />
         <Chart weekEnd={(diffToEow / diffBetweenStartAndEnd) * 100} />
       </div>
     </div>
