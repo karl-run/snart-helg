@@ -1,6 +1,7 @@
 .root {
     width: 100vw;
     overflow: auto;
+    padding: 32px;
 }
 
 .scrollArea {
