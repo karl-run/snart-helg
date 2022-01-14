@@ -11,16 +11,19 @@ import useInterval from "../hooks/useInterval";
 const Progress = (): JSX.Element => {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const captureScrollAction = useRef(false);
 
   const { diffBetweenTuesdayAndEow, diffFromStart, diffFromTuesday, diffToEow, diffBetweenStartAndEnd, fridayEow } =
     useTime();
 
   useLayoutEffect(() => {
-    if (rootRef.current == null || containerRef.current == null) return;
+    if (rootRef.current == null || containerRef.current == null || captureScrollAction.current) return;
 
     rootRef.current.scrollLeft =
       (diffFromStart / diffBetweenStartAndEnd) * containerRef.current.getBoundingClientRect().width -
       rootRef.current.getBoundingClientRect().width / 2;
+
+    captureScrollAction.current = true;
   });
 
   return (
