@@ -1,20 +1,29 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 52px;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 52px;
+  gap: 16px;
 
-    position: sticky;
-    left: 50%;
-    width: 0;
+  position: sticky;
+  left: 50%;
+  width: 0;
 }
 
 .dayName {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .progressGraph {
-    width: 100px;
+  width: 100px;
+}
+
+.sparklesContainer {
+  width: 256px;
+  height: 256px;
+
+  position: absolute;
+  top: -64px;
+  left: -128px;
 }

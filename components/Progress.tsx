@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import no from "date-fns/locale/nb";
-import { add, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
+import { add, differenceInSeconds, endOfWeek, parseISO, startOfWeek } from "date-fns";
 
 import ProgressCat from "./ProgressCat";
 import Chart from "./Chart";
@@ -26,7 +26,10 @@ const Progress = (): JSX.Element => {
   return (
     <div ref={rootRef} className={styles.root}>
       <div ref={containerRef} className={styles.scrollArea}>
-        <ProgressPercent feelingProgress={clamp((diffFromTuesday / diffBetweenTuesdayAndEow) * 100)} />
+        <ProgressPercent
+          feelingProgress={clamp((diffFromTuesday / diffBetweenTuesdayAndEow) * 100)}
+          secondsToHelg={diffBetweenTuesdayAndEow - diffFromTuesday}
+        />
         <ProgressCat progress={(diffFromStart / diffBetweenStartAndEnd) * 100} fridayEow={fridayEow} />
         <Chart weekEnd={(diffToEow / diffBetweenStartAndEnd) * 100} />
       </div>
@@ -45,7 +48,7 @@ function useTime() {
     300000,
   );
 
-  return useMemo(() => {
+  const memoizedValues = useMemo(() => {
     console.log(`Recalculating: ${rerenderCount}`);
 
     const now = new Date();
@@ -69,6 +72,29 @@ function useTime() {
       fridayEow,
     };
   }, [rerenderCount]);
+
+  useEffect(() => {
+    const secondsToHelg = memoizedValues.diffBetweenTuesdayAndEow - memoizedValues.diffFromTuesday;
+
+    let timeoutId: NodeJS.Timeout;
+    if (secondsToHelg < 48600 && secondsToHelg > 0) {
+      timeoutId = setTimeout(
+        () => {
+          setState((i) => i + 1);
+        },
+        // During the last 5 minutes to helg, rerender every second
+        1000,
+      );
+    }
+
+    return () => {
+      if (!timeoutId) return;
+
+      clearTimeout(timeoutId);
+    };
+  });
+
+  return memoizedValues;
 }
 
 function getEowHours(): number {
