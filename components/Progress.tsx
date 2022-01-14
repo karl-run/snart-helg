@@ -77,12 +77,12 @@ function useTime() {
     const secondsToHelg = memoizedValues.diffBetweenTuesdayAndEow - memoizedValues.diffFromTuesday;
 
     let timeoutId: NodeJS.Timeout;
-    if (secondsToHelg < 48600 && secondsToHelg > 0) {
+    if (secondsToHelg < 3000 && secondsToHelg > 0) {
       timeoutId = setTimeout(
         () => {
           setState((i) => i + 1);
         },
-        // During the last 5 minutes to helg, rerender every second
+        // During the last 50 minutes to helg, rerender every second
         1000,
       );
     }
