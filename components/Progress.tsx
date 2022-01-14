@@ -77,7 +77,7 @@ function useTime() {
     const secondsToHelg = memoizedValues.diffBetweenTuesdayAndEow - memoizedValues.diffFromTuesday;
 
     let timeoutId: NodeJS.Timeout;
-    if (secondsToHelg < 3000 && secondsToHelg > 0) {
+    if (secondsToHelg < 3000 && secondsToHelg > -10) {
       timeoutId = setTimeout(
         () => {
           setState((i) => i + 1);
