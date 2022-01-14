@@ -10,6 +10,15 @@
   gap: 8px;
 }
 
+@media only screen and (max-height: 501px) {
+  .root {
+    top: 8px;
+    right: 8px;
+    left: unset;
+    bottom: unset;
+  }
+}
+
 .buttons {
   display: flex;
   justify-content: center;
