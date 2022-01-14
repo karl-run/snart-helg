@@ -53,7 +53,7 @@ function useTime() {
     const end = endOfWeek(now, { locale: no });
     const tuesday = add(start, { days: 1 });
 
-    const fridayEow = add(start, { days: 4, hours: 17 });
+    const fridayEow = add(start, { days: 4, hours: getEowHours() });
     const diffBetweenTuesdayAndEow = differenceInSeconds(fridayEow, tuesday);
     const diffFromStart = differenceInSeconds(now, start);
     const diffFromTuesday = differenceInSeconds(now, tuesday);
@@ -69,6 +69,18 @@ function useTime() {
       fridayEow,
     };
   }, [rerenderCount]);
+}
+
+function getEowHours(): number {
+  const eowLocalStorage: "15" | "16" | "17" | string | undefined | null = localStorage.getItem("eow");
+  switch (eowLocalStorage) {
+    case "15":
+    case "16":
+    case "17":
+      return +eowLocalStorage;
+    default:
+      return 16;
+  }
 }
 
 function clamp(value: number) {
