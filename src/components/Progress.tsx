@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import no from "date-fns/locale/nb";
-import { add, differenceInSeconds, endOfWeek, parseISO, startOfWeek } from "date-fns";
+import { add, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
 
 import ProgressCat from "./ProgressCat";
 import Chart from "./Chart";
