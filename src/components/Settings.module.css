@@ -1,0 +1,74 @@
+.settingsButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+  font-size: 2rem;
+}
+
+.root {
+  position: absolute;
+  top: 58px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 8px;
+}
+
+.openRoot {
+  opacity: 1;
+}
+
+.timerPicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid grey;
+}
+
+.sliderPicker {
+  min-width: 180px;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sliderPicker > div:first-of-type {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.timeButton {
+  background: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.timeButton:hover {
+  border: 1px solid #ff99ff;
+}
+
+.isSelected {
+  border: 1px dotted #ff99ff;
+}

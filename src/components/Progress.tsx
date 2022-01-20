@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import no from "date-fns/locale/nb";
-import { add, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
+import { add, sub, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
 
 import ProgressCat from "./ProgressCat";
 import Chart from "./Chart";
@@ -8,13 +8,17 @@ import ProgressPercent from "./ProgressPercent";
 import styles from "./Progress.module.css";
 import useInterval from "../hooks/useInterval";
 
-const Progress = (): JSX.Element => {
+interface Props {
+  settingsChanged: number;
+}
+
+const Progress = ({ settingsChanged }: Props): JSX.Element => {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const captureScrollAction = useRef(false);
 
   const { diffBetweenTuesdayAndEow, diffFromStart, diffFromTuesday, diffToEow, diffBetweenStartAndEnd, fridayEow } =
-    useTime();
+    useTime(settingsChanged);
 
   useLayoutEffect(() => {
     if (rootRef.current == null || containerRef.current == null || captureScrollAction.current) return;
@@ -40,26 +44,20 @@ const Progress = (): JSX.Element => {
   );
 };
 
-function useTime() {
+function useTime(settingsChanged: number) {
   const [rerenderCount, setState] = useState(0);
 
-  useInterval(
-    () => {
-      setState((i) => i + 1);
-    },
-    // Rerender every 5 minutes
-    300000,
-  );
+  useInterval(() => {
+    setState((i) => i + 1);
+  }, getRerenderSpeed());
 
   const memoizedValues = useMemo(() => {
-    console.log(`Recalculating: ${rerenderCount}`);
-
     const now = new Date();
     const start = startOfWeek(now, { locale: no });
     const end = endOfWeek(now, { locale: no });
     const tuesday = add(start, { days: 1 });
-
     const fridayEow = add(start, { days: 4, hours: getEowHours() });
+
     const diffBetweenTuesdayAndEow = differenceInSeconds(fridayEow, tuesday);
     const diffFromStart = differenceInSeconds(now, start);
     const diffFromTuesday = differenceInSeconds(now, tuesday);
@@ -74,7 +72,9 @@ function useTime() {
       diffBetweenStartAndEnd,
       fridayEow,
     };
-  }, [rerenderCount]);
+    //  Use rerender count to trigger a new render when it changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rerenderCount, settingsChanged]);
 
   useEffect(() => {
     const secondsToHelg = memoizedValues.diffBetweenTuesdayAndEow - memoizedValues.diffFromTuesday;
@@ -98,6 +98,16 @@ function useTime() {
   });
 
   return memoizedValues;
+}
+
+export function getRerenderSpeed(): number {
+  if (!process.browser) return 1;
+
+  const speed = +(localStorage.getItem("speed") ?? 1);
+
+  if (speed === 150) return 300;
+
+  return 300000 / speed;
 }
 
 function getEowHours(): number {

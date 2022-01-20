@@ -4,8 +4,9 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
-import sparkles from "./images/sparkles.gif";
 
+import { getRerenderSpeed } from "./Progress";
+import sparkles from "./images/sparkles.gif";
 import styles from "./ProgressPercent.module.css";
 
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
 
 const ProgressPercent = ({ feelingProgress, secondsToHelg }: Props): JSX.Element => {
   const isHelg = secondsToHelg < 0;
+  const { progressText, progressTextSize } = getProgressText(feelingProgress);
+
   return (
     <div className={styles.root}>
       {isHelg && (
@@ -30,10 +33,10 @@ const ProgressPercent = ({ feelingProgress, secondsToHelg }: Props): JSX.Element
       <CircularProgressbar
         className={styles.progressGraph}
         value={feelingProgress}
-        text={feelingProgress < 99 ? `${Math.round(feelingProgress)}%` : `${feelingProgress.toFixed(4)}%`}
+        text={progressText}
         styles={buildStyles({
           textColor: "#ff99ff",
-          textSize: '1.1rem',
+          textSize: progressTextSize,
           pathColor: "#ff99ff",
         })}
       />
@@ -41,5 +44,35 @@ const ProgressPercent = ({ feelingProgress, secondsToHelg }: Props): JSX.Element
     </div>
   );
 };
+
+function getProgressText(feelingProgress: number): { progressText: string; progressTextSize: string } {
+  if (feelingProgress === 100) {
+    return {
+      progressText: "100%",
+      progressTextSize: "1.2rem",
+    };
+  } else if (feelingProgress < 99) {
+    return {
+      progressText: `${feelingProgress.toFixed(getDigits())}%`,
+      progressTextSize: getDigits() < 4 ? "1.1rem" : "0.8rem",
+    };
+  } else {
+    return {
+      progressText: `${feelingProgress.toFixed(5)}%`,
+      progressTextSize: "0.8rem",
+    };
+  }
+}
+
+function getDigits(): number {
+  const speed = getRerenderSpeed();
+  if (speed > 60000) {
+    return 1;
+  } else if (speed > 1000) {
+    return 3;
+  } else {
+    return 5;
+  }
+}
 
 export default ProgressPercent;

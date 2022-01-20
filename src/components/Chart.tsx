@@ -22,6 +22,7 @@ function Chart({ weekEnd }: Props): JSX.Element {
         }}
       >
         Det er HELG
+        <div className={styles.eowTimestamp}>{localStorage.getItem("eow") ?? "16"}:00</div>
       </div>
       <div className={styles.day} />
       <div className={styles.day} />
