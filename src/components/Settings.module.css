@@ -17,14 +17,10 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  opacity: 0;
   border: 1px solid gray;
   border-radius: 3px;
   padding: 8px;
-}
-
-.openRoot {
-  opacity: 1;
+  background-color: white;
 }
 
 .timerPicker {

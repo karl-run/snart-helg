@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { millisecondsToMinutes, millisecondsToSeconds } from "date-fns";
+import cn from "classnames";
 
 import { getRerenderSpeed } from "./Progress";
 import styles from "./Settings.module.css";
-import classNames from "classnames";
-import cn from "classnames";
 
 interface Props {
   onSettingsChanged: () => void;
@@ -36,6 +35,13 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element => {
   );
 
   useEffect(() => {
+    const handleEscClicked = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeSettings();
+        buttonRef.current?.focus();
+      }
+    };
+
     const handleDocumentClicked = (event: MouseEvent) => {
       if (!(event.target instanceof Element) || !buttonRef.current || !modalRef.current) return;
       if (event.target === buttonRef.current || modalRef.current.contains(event.target)) return;
@@ -44,46 +50,58 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element => {
     };
 
     document.addEventListener("click", handleDocumentClicked);
+    document.addEventListener("keyup", handleEscClicked);
 
-    return () => document.removeEventListener("click", handleDocumentClicked);
+    return () => {
+      document.removeEventListener("click", handleDocumentClicked);
+      document.removeEventListener("keyup", handleEscClicked);
+    };
   }, [closeSettings]);
 
   return (
     <>
-      <button ref={buttonRef} className={styles.settingsButton} title="Settings" onClick={toggleSettings}>
+      <button
+        ref={buttonRef}
+        className={styles.settingsButton}
+        title="Settings"
+        onClick={toggleSettings}
+        aria-label="Åpne innstillinger"
+      >
         ⚙
       </button>
-      <div ref={modalRef} className={classNames(styles.root, { [styles.openRoot]: isOpen })}>
-        <div className={styles.timerPicker}>
-          <div>Når er helg?</div>
-          <div className={styles.buttons}>
-            {(["15", "16", "17"] as const).map((it) => (
-              <button
-                key={it}
-                className={cn(styles.timeButton, { [styles.isSelected]: selectedTime === it })}
-                onClick={handleTimeClick(it)}
-              >
-                {it}:00
-              </button>
-            ))}
+      {isOpen && (
+        <div ref={modalRef} className={styles.root} role="dialog" aria-label="Innstillinger">
+          <div className={styles.timerPicker}>
+            <div>Når er helg?</div>
+            <div className={styles.buttons}>
+              {(["15", "16", "17"] as const).map((it) => (
+                <button
+                  key={it}
+                  className={cn(styles.timeButton, { [styles.isSelected]: selectedTime === it })}
+                  onClick={handleTimeClick(it)}
+                >
+                  {it}:00
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className={styles.sliderPicker}>
+            <div>Hvor fort skal den telle ned?</div>
+            <input
+              type="range"
+              min="1"
+              max="150"
+              defaultValue={selectedSpeed}
+              className="slider"
+              id="myRange"
+              onChange={(event) => handleSpeedChange(event.target.value)}
+            />
+            <div>
+              <RerenderSpeed />
+            </div>
           </div>
         </div>
-        <div className={styles.sliderPicker}>
-          <div>Hvor fort skal den telle ned?</div>
-          <input
-            type="range"
-            min="1"
-            max="150"
-            defaultValue={selectedSpeed}
-            className="slider"
-            id="myRange"
-            onChange={(event) => handleSpeedChange(event.target.value)}
-          />
-          <div>
-            <RerenderSpeed />
-          </div>
-        </div>
-      </div>
+      )}
     </>
   );
 };
