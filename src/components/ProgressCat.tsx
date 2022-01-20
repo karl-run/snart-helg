@@ -15,6 +15,12 @@ function ProgressCat({ progress, fridayEow }: Props): JSX.Element {
     <div className={styles.root}>
       <div className={styles.nyanTail} style={{ right: `${100 - progress}%` }} />
       <div
+        className={styles.line}
+        style={{
+          left: `${progress}%`,
+        }}
+      />
+      <div
         className={styles.positioning}
         style={{
           left: `${progress}%`,
