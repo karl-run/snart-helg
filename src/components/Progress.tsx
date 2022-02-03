@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import no from "date-fns/locale/nb";
-import { add, sub, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
+import { add, differenceInSeconds, endOfWeek, startOfWeek  } from "date-fns";
 
 import ProgressCat from "./ProgressCat";
 import Chart from "./Chart";
@@ -55,7 +55,7 @@ function useTime(settingsChanged: number) {
     const now = new Date();
     const start = startOfWeek(now, { locale: no });
     const end = endOfWeek(now, { locale: no });
-    const tuesday = add(start, { days: 1 });
+    const tuesday = add(start, { hours: 8 });
     const fridayEow = add(start, { days: 4, hours: getEowHours() });
 
     const diffBetweenTuesdayAndEow = differenceInSeconds(fridayEow, tuesday);
