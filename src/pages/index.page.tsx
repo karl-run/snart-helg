@@ -28,6 +28,9 @@ const Home: NextPage = () => {
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <meta name="description" content="Er det snart helg? Kanskje." />
+        <meta property="og:url" content="https://helg.karl.run" />
+        <meta property="og:title" content="Er det snart helg?" />
+        <meta property="og:site_name" content="Snart Helg?" />
       </Head>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-HF9Y3XNZQ5" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">

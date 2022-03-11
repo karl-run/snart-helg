@@ -8,6 +8,7 @@ import { nb } from "date-fns/locale";
 import { getRerenderSpeed } from "./Progress";
 import sparkles from "./images/sparkles.gif";
 import styles from "./ProgressPercent.module.css";
+import Head from "next/head";
 
 interface Props {
   feelingProgress: number;
@@ -20,6 +21,9 @@ const ProgressPercent = ({ feelingProgress, secondsToHelg }: Props): JSX.Element
 
   return (
     <div className={styles.root}>
+      <Head>
+        <meta property="og:description" content={`Det er ${progressText} helg`} />
+      </Head>
       {isHelg && (
         <div className={styles.sparklesContainer}>
           <Image src={sparkles} alt="forverkeri" />
