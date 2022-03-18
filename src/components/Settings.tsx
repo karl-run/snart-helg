@@ -4,23 +4,24 @@ import cn from "classnames";
 
 import { getRerenderSpeed } from "./Progress";
 import styles from "./Settings.module.css";
+import { isLocalStorageAvailable, safeGet, safeSet } from "../localStorageUtils";
 
 interface Props {
   onSettingsChanged: () => void;
 }
 
-const Settings = ({ onSettingsChanged }: Props): JSX.Element => {
+const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const toggleSettings = useCallback(() => setIsOpen((b) => !b), []);
   const closeSettings = useCallback(() => setIsOpen(false), []);
-  const selectedTime = localStorage.getItem("eow") ?? "16";
-  const selectedSpeed = localStorage.getItem("speed") ?? "1";
+  const selectedTime = safeGet("eow", "16");
+  const selectedSpeed = safeGet("speed", "1");
 
   const handleTimeClick = useCallback(
     (time: "15" | "16" | "17") => () => {
-      localStorage.setItem("eow", time);
+      safeSet("eow", time);
       onSettingsChanged();
     },
     [onSettingsChanged],
@@ -28,7 +29,7 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element => {
 
   const handleSpeedChange = useCallback(
     (speed: string) => {
-      localStorage.setItem("speed", speed);
+      safeSet("speed", speed);
       onSettingsChanged();
     },
     [onSettingsChanged],
@@ -57,6 +58,10 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element => {
       document.removeEventListener("keyup", handleEscClicked);
     };
   }, [closeSettings]);
+
+  if (!isLocalStorageAvailable()) {
+    return null;
+  }
 
   return (
     <>

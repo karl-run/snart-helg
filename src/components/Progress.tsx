@@ -1,12 +1,13 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import no from "date-fns/locale/nb";
-import { add, differenceInSeconds, endOfWeek, startOfWeek  } from "date-fns";
+import { add, differenceInSeconds, endOfWeek, startOfWeek } from "date-fns";
 
 import ProgressCat from "./ProgressCat";
 import Chart from "./Chart";
 import ProgressPercent from "./ProgressPercent";
 import styles from "./Progress.module.css";
 import useInterval from "../hooks/useInterval";
+import { safeGet } from "../localStorageUtils";
 
 interface Props {
   settingsChanged: number;
@@ -103,7 +104,7 @@ function useTime(settingsChanged: number) {
 export function getRerenderSpeed(): number {
   if (!process.browser) return 1;
 
-  const speed = +(localStorage.getItem("speed") ?? 1);
+  const speed = +safeGet("speed", "1");
 
   if (speed === 150) return 300;
 
@@ -111,7 +112,7 @@ export function getRerenderSpeed(): number {
 }
 
 function getEowHours(): number {
-  const eowLocalStorage: "15" | "16" | "17" | string | undefined | null = localStorage.getItem("eow");
+  const eowLocalStorage: "15" | "16" | "17" | string | undefined | null = safeGet("eow", "16");
   switch (eowLocalStorage) {
     case "15":
     case "16":
