@@ -15,7 +15,7 @@ const Countdown = ({ className, fridayEow }: Props): JSX.Element | null => {
 
   const timeLeft = formatDistanceToNowStrict(fridayEow, { locale: nb });
 
-  return <div className={cn(styles.root, className)}>Det er {timeLeft} til påske</div>;
+  return <div className={cn(styles.root, className)}>Det er {timeLeft} til helg</div>;
 };
 
 export default Countdown;

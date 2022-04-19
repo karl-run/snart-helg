@@ -44,7 +44,7 @@ const ProgressPercent = ({ feelingProgress, secondsToHelg }: Props): JSX.Element
           pathColor: "#ff99ff",
         })}
       />
-      <div>Påskefølelse</div>
+      <div>Helgefølelse</div>
     </div>
   );
 };
