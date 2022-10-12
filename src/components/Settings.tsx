@@ -18,6 +18,7 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const closeSettings = useCallback(() => setIsOpen(false), []);
   const selectedTime = safeGet("eow", "16");
   const selectedSpeed = safeGet("speed", "1");
+  const selectedUseHours = safeGet("secret-timer", "no");
 
   const handleTimeClick = useCallback(
     (time: "15" | "16" | "17") => () => {
@@ -30,6 +31,15 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const handleSpeedChange = useCallback(
     (speed: string) => {
       safeSet("speed", speed);
+      onSettingsChanged();
+    },
+    [onSettingsChanged],
+  );
+
+  const handleUseHoursChange = useCallback(
+    (checked: boolean) => {
+      safeSet("secret-timer", checked ? "yes" : "no");
+
       onSettingsChanged();
     },
     [onSettingsChanged],
@@ -67,7 +77,7 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
     <>
       <button
         ref={buttonRef}
-        className={styles.settingsButton}
+        className={cn(styles.settingsButton, { [styles.settingsIsNuclear]: selectedUseHours === 'yes'})}
         title="Settings"
         onClick={toggleSettings}
         aria-label="Åpne innstillinger"
@@ -104,6 +114,16 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
             <div>
               <RerenderSpeed />
             </div>
+          </div>
+          <div className={styles.other}>
+            <input
+              type="checkbox"
+              id="hour-checkbox"
+              name="scales"
+              checked={selectedUseHours === "yes" ? true : false}
+              onChange={(event) => handleUseHoursChange(event.currentTarget.checked)}
+            />
+            <label htmlFor="hour-checkbox">Bruk hemmelig timer</label>
           </div>
         </div>
       )}

@@ -8,6 +8,7 @@ import ProgressPercent from "./ProgressPercent";
 import styles from "./Progress.module.css";
 import useInterval from "../hooks/useInterval";
 import { safeGet } from "../localStorageUtils";
+import NuclearCountdown from "./NuclearCountdown";
 
 interface Props {
   settingsChanged: number;
@@ -32,16 +33,19 @@ const Progress = ({ settingsChanged }: Props): JSX.Element => {
   });
 
   return (
-    <div ref={rootRef} className={styles.root}>
-      <div ref={containerRef} className={styles.scrollArea}>
-        <ProgressPercent
-          feelingProgress={clamp((diffFromTuesday / diffBetweenTuesdayAndEow) * 100)}
-          secondsToHelg={diffBetweenTuesdayAndEow - diffFromTuesday}
-        />
-        <ProgressCat progress={(diffFromStart / diffBetweenStartAndEnd) * 100} fridayEow={fridayEow} />
-        <Chart weekEnd={(diffToEow / diffBetweenStartAndEnd) * 100} />
+    <>
+      <div ref={rootRef} className={styles.root}>
+        <div ref={containerRef} className={styles.scrollArea}>
+          <ProgressPercent
+            feelingProgress={clamp((diffFromTuesday / diffBetweenTuesdayAndEow) * 100)}
+            secondsToHelg={diffBetweenTuesdayAndEow - diffFromTuesday}
+          />
+          <ProgressCat progress={(diffFromStart / diffBetweenStartAndEnd) * 100} fridayEow={fridayEow} />
+          <Chart weekEnd={(diffToEow / diffBetweenStartAndEnd) * 100} />
+        </div>
       </div>
-    </div>
+      <NuclearCountdown key={settingsChanged} fridayEow={fridayEow} />
+    </>
   );
 };
 
