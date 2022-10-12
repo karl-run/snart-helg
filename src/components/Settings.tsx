@@ -11,6 +11,7 @@ interface Props {
 }
 
 const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
+  const sliderRef = useRef<HTMLInputElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,12 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const handleUseHoursChange = useCallback(
     (checked: boolean) => {
       safeSet("secret-timer", checked ? "yes" : "no");
+      safeSet("speed", "150");
+
+      if (sliderRef.current != null) {
+        // @ts-expect-error: can't be arsed to fix typing
+        sliderRef.current.value = 150;
+      }
 
       onSettingsChanged();
     },
@@ -77,7 +84,7 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
     <>
       <button
         ref={buttonRef}
-        className={cn(styles.settingsButton, { [styles.settingsIsNuclear]: selectedUseHours === 'yes'})}
+        className={cn(styles.settingsButton, { [styles.settingsIsNuclear]: selectedUseHours === "yes" })}
         title="Settings"
         onClick={toggleSettings}
         aria-label="Åpne innstillinger"
@@ -103,6 +110,7 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
           <div className={styles.sliderPicker}>
             <div>Hvor fort skal den telle ned?</div>
             <input
+              ref={sliderRef}
               type="range"
               min="1"
               max="150"
