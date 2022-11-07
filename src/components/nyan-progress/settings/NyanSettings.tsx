@@ -2,15 +2,15 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { millisecondsToMinutes, millisecondsToSeconds } from "date-fns";
 import cn from "classnames";
 
-import { getRerenderSpeed } from "./Progress";
-import styles from "./Settings.module.css";
-import { isLocalStorageAvailable, safeGet, safeSet } from "../localStorageUtils";
+import { getRerenderSpeed, isLocalStorageAvailable, safeGet, safeSet } from "../../../utils/localStorage";
+
+import styles from "./NyanSettings.module.css";
 
 interface Props {
   onSettingsChanged: () => void;
 }
 
-const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
+const NyanSettings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const sliderRef = useRef<HTMLInputElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -19,7 +19,6 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const closeSettings = useCallback(() => setIsOpen(false), []);
   const selectedTime = safeGet("eow", "16");
   const selectedSpeed = safeGet("speed", "1");
-  const selectedUseHours = safeGet("secret-timer", "no");
 
   const handleTimeClick = useCallback(
     (time: "15" | "16" | "17") => () => {
@@ -32,21 +31,6 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
   const handleSpeedChange = useCallback(
     (speed: string) => {
       safeSet("speed", speed);
-      onSettingsChanged();
-    },
-    [onSettingsChanged],
-  );
-
-  const handleUseHoursChange = useCallback(
-    (checked: boolean) => {
-      safeSet("secret-timer", checked ? "yes" : "no");
-      safeSet("speed", "150");
-
-      if (sliderRef.current != null) {
-        // @ts-expect-error: can't be arsed to fix typing
-        sliderRef.current.value = 150;
-      }
-
       onSettingsChanged();
     },
     [onSettingsChanged],
@@ -84,7 +68,7 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
     <>
       <button
         ref={buttonRef}
-        className={cn(styles.settingsButton, { [styles.settingsIsNuclear]: selectedUseHours === "yes" })}
+        className={cn(styles.settingsButton)}
         title="Settings"
         onClick={toggleSettings}
         aria-label="Åpne innstillinger"
@@ -123,16 +107,6 @@ const Settings = ({ onSettingsChanged }: Props): JSX.Element | null => {
               <RerenderSpeed />
             </div>
           </div>
-          <div className={styles.other}>
-            <input
-              type="checkbox"
-              id="hour-checkbox"
-              name="scales"
-              checked={selectedUseHours === "yes" ? true : false}
-              onChange={(event) => handleUseHoursChange(event.currentTarget.checked)}
-            />
-            <label htmlFor="hour-checkbox">Bruk hemmelig timer</label>
-          </div>
         </div>
       )}
     </>
@@ -152,4 +126,4 @@ function RerenderSpeed(): JSX.Element {
   }
 }
 
-export default Settings;
+export default NyanSettings;

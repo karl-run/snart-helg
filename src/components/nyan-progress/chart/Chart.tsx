@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 
 import styles from "./Chart.module.css";
-import { safeGet } from "../localStorageUtils";
+import { safeGet } from "../../../utils/localStorage";
 
 type Props = {
   weekEnd: number;
