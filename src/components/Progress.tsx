@@ -9,6 +9,7 @@ import styles from "./Progress.module.css";
 import useInterval from "../hooks/useInterval";
 import { safeGet } from "../localStorageUtils";
 import NuclearCountdown from "./NuclearCountdown";
+import { parseISO } from "date-fns/esm";
 
 interface Props {
   settingsChanged: number;
@@ -44,7 +45,11 @@ const Progress = ({ settingsChanged }: Props): JSX.Element => {
           <Chart weekEnd={(diffToEow / diffBetweenStartAndEnd) * 100} />
         </div>
       </div>
-      <NuclearCountdown key={settingsChanged} fridayEow={fridayEow} />
+      <NuclearCountdown
+        key={settingsChanged}
+        fridayEow={fridayEow}
+        secondsToHelg={diffBetweenTuesdayAndEow - diffFromTuesday}
+      />
     </>
   );
 };
