@@ -5,10 +5,10 @@ import "react-circular-progressbar/dist/styles.css";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
 
-import { getRerenderSpeed } from "./Progress";
-import sparkles from "./images/sparkles.gif";
+import sparkles from "../images/sparkles.gif";
 import styles from "./ProgressPercent.module.css";
 import Head from "next/head";
+import { getRerenderSpeed } from "../../../utils/localStorage";
 
 interface Props {
   feelingProgress: number;

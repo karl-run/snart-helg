@@ -1,26 +1,17 @@
-import { useCallback, useState } from "react";
+import React from "react";
 import type { NextPage } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
-import Script from "next/script";
+import Link from "next/link";
+import Image from "next/image";
 
-import styles from "./index.module.css";
+import nyanThumb from "../thumbnails/nyan.png";
+import timerThumb from "../thumbnails/timer.png";
 
-const Progress = dynamic(() => import("../components/Progress"), {
-  ssr: false,
-});
-const Settings = dynamic(() => import("../components/Settings"), {
-  ssr: false,
-});
+import styles from "./index.page.module.css";
 
 const Home: NextPage = () => {
-  const [settingsChanged, setSettingsChanged] = useState(0);
-  const handleOnSettingsChanged = useCallback(() => {
-    setSettingsChanged((i) => i + 1);
-  }, []);
-
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Snart Helg?</title>
         <link rel="icon" href="/favicon.ico" />
@@ -32,20 +23,15 @@ const Home: NextPage = () => {
         <meta property="og:title" content="Er det snart helg?" />
         <meta property="og:site_name" content="Snart Helg?" />
       </Head>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-HF9Y3XNZQ5" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-HF9Y3XNZQ5');
-        `}
-      </Script>
-
-      <main className={styles.main}>
-        <Progress settingsChanged={settingsChanged} />
-        <Settings onSettingsChanged={handleOnSettingsChanged} />
+      <main className={styles.container}>
+        <Link href="/nyan">
+          <Image src={nyanThumb} alt="Nyan cat countdown" width={300} placeholder="blur" />
+          <h1>Nyan</h1>
+        </Link>
+        <Link href="/timer">
+          <Image src={timerThumb} alt="Timer countdown" width={300} placeholder="blur" />
+          <h1>Timer</h1>
+        </Link>
       </main>
     </div>
   );

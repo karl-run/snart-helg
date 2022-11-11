@@ -31,7 +31,6 @@
 }
 
 .nyanHead {
-  width: 70px;
   position: absolute;
   left: -52px;
 }
@@ -40,7 +39,7 @@
   position: absolute;
   left: -52px;
   top: 0;
-  background: url("./images/nyan_tail.gif") repeat-x right;
+  background: url("../images/nyan_tail.gif") repeat-x right;
   background-size: contain;
   height: 39px;
 }

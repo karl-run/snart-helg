@@ -1,19 +1,8 @@
-import { differenceInSeconds, intervalToDuration } from "date-fns";
-
-import { safeGet } from "../localStorageUtils";
-
 import styles from "./NuclearCountdown.module.css";
+import { useIntervalToWeekend } from "../../hooks/useTime";
 
-interface Props {
-  fridayEow: Date;
-  secondsToHelg: number;
-}
-
-function NuclearCountdown({ fridayEow, secondsToHelg }: Props): JSX.Element | null {
-  if (safeGet("secret-timer", "no") !== "yes") return null;
-  const isHelg = secondsToHelg < 0;
-
-  const interval = intervalToDuration({ start: new Date(), end: fridayEow });
+function NuclearCountdown(): JSX.Element | null {
+  const { isHelg, interval } = useIntervalToWeekend();
 
   return (
     <div className={styles.nuclearWrapper}>
@@ -21,15 +10,15 @@ function NuclearCountdown({ fridayEow, secondsToHelg }: Props): JSX.Element | nu
         {!isHelg ? (
           <>
             <div className={styles.countElement}>
-              <div>{interval.days?.toString().padStart(2, "0")}:</div>
+              <div>{interval.days?.toString().padStart(2, "0")}</div>
               <div>days</div>
             </div>
             <div className={styles.countElement}>
-              <div>{interval.hours?.toString().padStart(2, "0")}:</div>
+              <div>{interval.hours?.toString().padStart(2, "0")}</div>
               <div>hours</div>
             </div>
             <div className={styles.countElement}>
-              <div>{interval.minutes?.toString().padStart(2, "0")}:</div>
+              <div>{interval.minutes?.toString().padStart(2, "0")}</div>
               <div>minutes</div>
             </div>
             <div className={styles.countElement}>
@@ -39,7 +28,7 @@ function NuclearCountdown({ fridayEow, secondsToHelg }: Props): JSX.Element | nu
           </>
         ) : (
           <div className={styles.countElement}>
-            <div>it is helg</div>
+            <div className={styles.itIsHelg}>it is helg</div>
           </div>
         )}
       </div>

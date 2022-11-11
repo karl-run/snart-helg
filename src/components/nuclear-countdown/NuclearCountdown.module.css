@@ -1,0 +1,74 @@
+.nuclearWrapper {
+  font-family: "Source Code Pro", monospace;
+  position: fixed;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nuclearCountdown {
+  display: flex;
+  color: red;
+  font-size: 8rem;
+  margin-bottom: 32px;
+}
+
+.itIsHelg {
+  text-align: center;
+}
+
+.countElement {
+  position: relative;
+  display: flex;
+}
+
+.countElement > div:nth-child(2) {
+  font-size: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+}
+
+.countElement::after {
+  content: ":";
+}
+
+.countElement:last-child::after {
+  content: "";
+}
+
+@media screen and (max-width: 862px) {
+  .nuclearCountdown {
+    flex-wrap: wrap;
+  }
+
+  .countElement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 100%;
+  }
+
+  .countElement > div:nth-child(2) {
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .countElement::after {
+    content: "";
+  }
+
+  @media screen and (max-height: 712px) {
+    .nuclearCountdown {
+      font-size: 6rem;
+    }
+  }
+}
+
+.text {
+  color: red;
+}

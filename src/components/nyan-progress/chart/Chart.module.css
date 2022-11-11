@@ -7,23 +7,23 @@
 }
 
 .monday {
-  background: url("./images/meow_fat.gif") no-repeat center center;
+  background: url("../images/meow_fat.gif") no-repeat center center;
 }
 
 .tuesday {
-  background: url("./images/meow_cry.png") no-repeat center center;
+  background: url("../images/meow_cry.png") no-repeat center center;
 }
 
 .wednesday {
-  background: url("./images/meow_wob.gif") no-repeat center center;
+  background: url("../images/meow_wob.gif") no-repeat center center;
 }
 
 .thursday {
-  background: url("./images/meow_wow.png") no-repeat center center;
+  background: url("../images/meow_wow.png") no-repeat center center;
 }
 
 .friday {
-  background: url("./images/meow_melt.png") no-repeat center center;
+  background: url("../images/meow_melt.png") no-repeat center center;
 }
 
 .day {
@@ -48,7 +48,7 @@
 .weekend {
   position: absolute;
   background: rgb(255, 255, 255);
-  background: url("./images/meow_yes.png") no-repeat center center,
+  background: url("../images/meow_yes.png") no-repeat center center,
     linear-gradient(
       90deg,
       rgba(255, 255, 255, 0) 0%,
