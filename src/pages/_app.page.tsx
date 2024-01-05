@@ -1,13 +1,19 @@
-import { Analytics } from "@vercel/analytics/react";
+import "../styles/globals.css";
+
 import type { AppProps } from "next/app";
 
-import "../styles/globals.css";
+import React from "react";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <Analytics />
+      <Script
+        strategy="afterInteractive"
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "493807fafdc44cd8bb8ef13c64082007"}'
+      />
     </>
   );
 }
