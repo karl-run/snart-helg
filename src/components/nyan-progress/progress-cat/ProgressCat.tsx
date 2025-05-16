@@ -32,7 +32,7 @@ function ProgressCat({ progress, fridayEow, isHelg, now }: Props): JSX.Element {
       >
         <div className={styles.cat}>
           <div className={styles.nyanHead}>
-            <Image src={nyanHead} alt="nyan cat" width={70} height={41} />
+            <Image src={nyanHead} alt="nyan cat" width={70} height={41} unoptimized />
             <Countdown className={styles.countdown} isHelg={isHelg} fridayEow={fridayEow} now={now} />
           </div>
         </div>
