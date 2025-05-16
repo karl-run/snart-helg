@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type JSX } from 'react'
 import { formatDistanceStrict } from 'date-fns'
 import { nb } from 'date-fns/locale'
 import cn from 'classnames'

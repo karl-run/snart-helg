@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef, type JSX } from 'react'
 
 import ProgressCat from './progress-cat/ProgressCat'
 import Chart from './chart/Chart'

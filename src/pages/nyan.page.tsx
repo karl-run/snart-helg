@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, type JSX } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import styles from './nyan.module.css'

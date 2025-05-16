@@ -1,3 +1,5 @@
+import type { JSX } from 'react'
+
 import Image from 'next/image'
 
 import nyanHead from '../images/nyan_head.gif'

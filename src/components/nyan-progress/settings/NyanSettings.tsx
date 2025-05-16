@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 import { millisecondsToMinutes, millisecondsToSeconds } from 'date-fns'
 import cn from 'classnames'
 
