@@ -2,7 +2,7 @@ import { add, differenceInSeconds, endOfWeek, intervalToDuration, startOfWeek, D
 import useInterval from './useInterval'
 import { getEowHours, getRerenderSpeed } from '../utils/localStorage'
 import { useEffect, useMemo, useState } from 'react'
-import no from 'date-fns/locale/nb'
+import { nb } from 'date-fns/locale'
 
 interface UseTime {
   now: Date
@@ -24,7 +24,7 @@ export function useTime(invalidateMemoCount: number = 0): UseTime {
 
   const memoizedValues: UseTime = useMemo(() => {
     const time = timeValues()
-    const end: Date = endOfWeek(time.now, { locale: no })
+    const end: Date = endOfWeek(time.now, { locale: nb })
 
     const diffFromStart: number = differenceInSeconds(time.now, time.start)
     const diffToEow: number = differenceInSeconds(time.fridayEow, time.start)
@@ -104,7 +104,7 @@ function useIncreasedRerenderSpeed(
 
 function timeValues() {
   const now: Date = new Date()
-  const start: Date = startOfWeek(now, { locale: no })
+  const start: Date = startOfWeek(now, { locale: nb })
   const mondayWorkday: Date = add(start, { hours: 8 })
   const fridayEow: Date = add(start, { days: 4, hours: getEowHours() })
 
