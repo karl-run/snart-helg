@@ -1,12 +1,12 @@
-import React from "react";
-import cn from "classnames";
+import React from 'react'
+import cn from 'classnames'
 
-import styles from "./Chart.module.css";
-import { safeGet } from "../../../utils/localStorage";
+import styles from './Chart.module.css'
+import { safeGet } from '../../../utils/localStorage'
 
 type Props = {
-  weekEnd: number;
-};
+  weekEnd: number
+}
 
 function Chart({ weekEnd }: Props): JSX.Element {
   return (
@@ -23,12 +23,12 @@ function Chart({ weekEnd }: Props): JSX.Element {
         }}
       >
         Det er HELG
-        <div className={styles.eowTimestamp}>{safeGet("eow", "16")}:00</div>
+        <div className={styles.eowTimestamp}>{safeGet('eow', '16')}:00</div>
       </div>
       <div className={styles.day} />
       <div className={styles.day} />
     </div>
-  );
+  )
 }
 
-export default Chart;
+export default Chart

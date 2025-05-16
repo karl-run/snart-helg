@@ -1,16 +1,16 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import nyanHead from "../images/nyan_head.gif";
-import Countdown from "../countdown/Countdown";
+import nyanHead from '../images/nyan_head.gif'
+import Countdown from '../countdown/Countdown'
 
-import styles from "./ProgressCat.module.css";
+import styles from './ProgressCat.module.css'
 
 type Props = {
-  progress: number;
-  fridayEow: Date;
-  isHelg: boolean;
-  now: Date;
-};
+  progress: number
+  fridayEow: Date
+  isHelg: boolean
+  now: Date
+}
 
 function ProgressCat({ progress, fridayEow, isHelg, now }: Props): JSX.Element {
   return (
@@ -36,7 +36,7 @@ function ProgressCat({ progress, fridayEow, isHelg, now }: Props): JSX.Element {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProgressCat;
+export default ProgressCat

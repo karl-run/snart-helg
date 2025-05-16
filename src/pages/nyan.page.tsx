@@ -1,20 +1,20 @@
-import React, { useCallback, useState } from "react";
-import Head from "next/head";
-import dynamic from "next/dynamic";
-import styles from "./nyan.module.css";
+import React, { useCallback, useState } from 'react'
+import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import styles from './nyan.module.css'
 
-const NyanProgress = dynamic(() => import("../components/nyan-progress/NyanProgress"), {
+const NyanProgress = dynamic(() => import('../components/nyan-progress/NyanProgress'), {
   ssr: false,
-});
-const NyanSettings = dynamic(() => import("../components/nyan-progress/settings/NyanSettings"), {
+})
+const NyanSettings = dynamic(() => import('../components/nyan-progress/settings/NyanSettings'), {
   ssr: false,
-});
+})
 
 function NyanPage(): JSX.Element {
-  const [settingsChanged, setSettingsChanged] = useState(0);
+  const [settingsChanged, setSettingsChanged] = useState(0)
   const handleOnSettingsChanged = useCallback(() => {
-    setSettingsChanged((i) => i + 1);
-  }, []);
+    setSettingsChanged((i) => i + 1)
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -34,7 +34,7 @@ function NyanPage(): JSX.Element {
         <NyanSettings onSettingsChanged={handleOnSettingsChanged} />
       </main>
     </div>
-  );
+  )
 }
 
-export default NyanPage;
+export default NyanPage

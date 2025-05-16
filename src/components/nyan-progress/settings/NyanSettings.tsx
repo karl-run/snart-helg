@@ -1,67 +1,67 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { millisecondsToMinutes, millisecondsToSeconds } from "date-fns";
-import cn from "classnames";
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { millisecondsToMinutes, millisecondsToSeconds } from 'date-fns'
+import cn from 'classnames'
 
-import { getRerenderSpeed, isLocalStorageAvailable, safeGet, safeSet } from "../../../utils/localStorage";
+import { getRerenderSpeed, isLocalStorageAvailable, safeGet, safeSet } from '../../../utils/localStorage'
 
-import styles from "./NyanSettings.module.css";
+import styles from './NyanSettings.module.css'
 
 interface Props {
-  onSettingsChanged: () => void;
+  onSettingsChanged: () => void
 }
 
 const NyanSettings = ({ onSettingsChanged }: Props): JSX.Element | null => {
-  const sliderRef = useRef<HTMLInputElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const modalRef = useRef<HTMLDivElement | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleSettings = useCallback(() => setIsOpen((b) => !b), []);
-  const closeSettings = useCallback(() => setIsOpen(false), []);
-  const selectedTime = safeGet("eow", "16");
-  const selectedSpeed = safeGet("speed", "1");
+  const sliderRef = useRef<HTMLInputElement | null>(null)
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
+  const modalRef = useRef<HTMLDivElement | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const toggleSettings = useCallback(() => setIsOpen((b) => !b), [])
+  const closeSettings = useCallback(() => setIsOpen(false), [])
+  const selectedTime = safeGet('eow', '16')
+  const selectedSpeed = safeGet('speed', '1')
 
   const handleTimeClick = useCallback(
-    (time: "15" | "16" | "17") => () => {
-      safeSet("eow", time);
-      onSettingsChanged();
+    (time: '15' | '16' | '17') => () => {
+      safeSet('eow', time)
+      onSettingsChanged()
     },
     [onSettingsChanged],
-  );
+  )
 
   const handleSpeedChange = useCallback(
     (speed: string) => {
-      safeSet("speed", speed);
-      onSettingsChanged();
+      safeSet('speed', speed)
+      onSettingsChanged()
     },
     [onSettingsChanged],
-  );
+  )
 
   useEffect(() => {
     const handleEscClicked = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeSettings();
-        buttonRef.current?.focus();
+      if (event.key === 'Escape') {
+        closeSettings()
+        buttonRef.current?.focus()
       }
-    };
+    }
 
     const handleDocumentClicked = (event: MouseEvent) => {
-      if (!(event.target instanceof Element) || !buttonRef.current || !modalRef.current) return;
-      if (event.target === buttonRef.current || modalRef.current.contains(event.target)) return;
+      if (!(event.target instanceof Element) || !buttonRef.current || !modalRef.current) return
+      if (event.target === buttonRef.current || modalRef.current.contains(event.target)) return
 
-      closeSettings();
-    };
+      closeSettings()
+    }
 
-    document.addEventListener("click", handleDocumentClicked);
-    document.addEventListener("keyup", handleEscClicked);
+    document.addEventListener('click', handleDocumentClicked)
+    document.addEventListener('keyup', handleEscClicked)
 
     return () => {
-      document.removeEventListener("click", handleDocumentClicked);
-      document.removeEventListener("keyup", handleEscClicked);
-    };
-  }, [closeSettings]);
+      document.removeEventListener('click', handleDocumentClicked)
+      document.removeEventListener('keyup', handleEscClicked)
+    }
+  }, [closeSettings])
 
   if (!isLocalStorageAvailable()) {
-    return null;
+    return null
   }
 
   return (
@@ -80,7 +80,7 @@ const NyanSettings = ({ onSettingsChanged }: Props): JSX.Element | null => {
           <div className={styles.timerPicker}>
             <div>Når er helg?</div>
             <div className={styles.buttons}>
-              {(["15", "16", "17"] as const).map((it) => (
+              {(['15', '16', '17'] as const).map((it) => (
                 <button
                   key={it}
                   className={cn(styles.timeButton, { [styles.isSelected]: selectedTime === it })}
@@ -110,20 +110,20 @@ const NyanSettings = ({ onSettingsChanged }: Props): JSX.Element | null => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
 function RerenderSpeed(): JSX.Element {
-  const rerenderSpeed = getRerenderSpeed();
-  const seconds = millisecondsToSeconds(rerenderSpeed);
+  const rerenderSpeed = getRerenderSpeed()
+  const seconds = millisecondsToSeconds(rerenderSpeed)
 
   if (seconds < 1) {
-    return <div>Hvert {Math.round(rerenderSpeed)}. millisekund</div>;
+    return <div>Hvert {Math.round(rerenderSpeed)}. millisekund</div>
   } else if (seconds <= 60) {
-    return <div>Hvert {seconds}. sekund</div>;
+    return <div>Hvert {seconds}. sekund</div>
   } else {
-    return <div>Hvert {millisecondsToMinutes(rerenderSpeed)}. minutt</div>;
+    return <div>Hvert {millisecondsToMinutes(rerenderSpeed)}. minutt</div>
   }
 }
 
-export default NyanSettings;
+export default NyanSettings

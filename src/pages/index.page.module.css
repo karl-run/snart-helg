@@ -20,13 +20,19 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
-  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0 3px 6px,
+    rgba(0, 0, 0, 0.23) 0 3px 6px;
+  transition:
+    box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container > a:hover,
 .container > a:focus {
-  box-shadow: rgba(0, 0, 0, 0.3) 0 19px 38px, rgba(0, 0, 0, 0.22) 0 15px 12px;
+  box-shadow:
+    rgba(0, 0, 0, 0.3) 0 19px 38px,
+    rgba(0, 0, 0, 0.22) 0 15px 12px;
   transform: scale(1.03);
 }
 

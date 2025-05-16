@@ -1,5 +1,5 @@
 .nuclearWrapper {
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
   position: fixed;
   background-color: black;
   height: 100vh;
@@ -34,11 +34,11 @@
 }
 
 .countElement::after {
-  content: ":";
+  content: ':';
 }
 
 .countElement:last-child::after {
-  content: "";
+  content: '';
 }
 
 @media screen and (max-width: 862px) {
@@ -59,7 +59,7 @@
   }
 
   .countElement::after {
-    content: "";
+    content: '';
   }
 
   @media screen and (max-height: 712px) {

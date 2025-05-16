@@ -1,13 +1,13 @@
-import React from "react";
-import type { NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import Image from 'next/image'
 
-import nyanThumb from "../thumbnails/nyan.png";
-import timerThumb from "../thumbnails/timer.png";
+import nyanThumb from '../thumbnails/nyan.png'
+import timerThumb from '../thumbnails/timer.png'
 
-import styles from "./index.page.module.css";
+import styles from './index.page.module.css'
 
 const Home: NextPage = () => {
   return (
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
         </Link>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
