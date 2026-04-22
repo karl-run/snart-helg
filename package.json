@@ -23,18 +23,12 @@
     "wrangler": "^4.84.1"
   },
   "devDependencies": {
-    "@karl-run/prettier-config": "^1.0.1",
-    "@types/node": "22.15.18",
+    "@karl-run/prettier-config": "^1.1.0",
+    "@types/node": "24.12.2",
     "@types/react": "^19.2.14",
     "astro": "^6.1.9",
-    "prettier": "^3.5.3",
-    "typescript": "5.8.3"
+    "prettier": "^3.8.3",
+    "typescript": "6.0.3"
   },
-  "prettier": "@karl-run/prettier-config",
-  "resolutions": {
-    "@types/react": "19.1.4"
-  },
-  "overrides": {
-    "vite": "^7"
-  }
+  "prettier": "@karl-run/prettier-config"
 }
