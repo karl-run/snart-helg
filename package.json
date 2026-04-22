@@ -8,19 +8,16 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "generate-types": "wrangler types"
+    "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.2.0",
     "@astrojs/react": "^5.0.4",
     "@types/react-dom": "^19.2.3",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "react": "^19.2.5",
     "react-circular-progressbar": "^2.2.0",
-    "react-dom": "^19.2.5",
-    "wrangler": "^4.84.1"
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@karl-run/prettier-config": "^1.1.0",
