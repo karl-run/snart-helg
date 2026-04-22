@@ -6,26 +6,24 @@
     "node": "22"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.4",
+    "@types/react-dom": "^19.2.3",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
-    "next": "15.3.2",
-    "react": "19.1.0",
+    "react": "^19.2.5",
     "react-circular-progressbar": "^2.2.0",
-    "react-dom": "19.1.0",
-    "sharp": "^0.34.1"
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@karl-run/prettier-config": "^1.0.1",
     "@types/node": "22.15.18",
-    "@types/react": "19.1.4",
-    "eslint": "8.57.1",
-    "eslint-config-next": "15.3.2",
+    "@types/react": "^19.2.14",
+    "astro": "^6.1.9",
     "prettier": "^3.5.3",
     "typescript": "5.8.3"
   },

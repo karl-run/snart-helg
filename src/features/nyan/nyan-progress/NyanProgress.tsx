@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useRef, type JSX } from 'react'
 
-import ProgressCat from './progress-cat/ProgressCat'
-import Chart from './chart/Chart'
-import ProgressPercent from './progress-percent/ProgressPercent'
+import ProgressCat from './progress-cat/ProgressCat.tsx'
+import Chart from './chart/Chart.tsx'
+import ProgressPercent from './progress-percent/ProgressPercent.tsx'
 import styles from './NyanProgress.module.css'
-import { useTime } from '../../hooks/useTime'
+import { useTime } from '../../../hooks/useTime.ts'
 
 interface Props {
   settingsChanged: number

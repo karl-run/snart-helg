@@ -1,19 +1,13 @@
-'use client'
+import { useCallback, useState, type JSX } from 'react'
 
-import React, { ReactElement, useCallback, useState } from 'react'
-import dynamic from 'next/dynamic'
+import NyanProgress from './nyan-progress/NyanProgress'
+import NyanSettings from './nyan-progress/settings/NyanSettings'
 
-import styles from './page.module.css'
+import styles from './NyanPage.module.css'
 
-const NyanProgress = dynamic(() => import('../../components/nyan-progress/NyanProgress'), {
-  ssr: false,
-})
-const NyanSettings = dynamic(() => import('../../components/nyan-progress/settings/NyanSettings'), {
-  ssr: false,
-})
-
-function NyanPage(): ReactElement {
+function NyanPage(): JSX.Element {
   const [settingsChanged, setSettingsChanged] = useState(0)
+
   const handleOnSettingsChanged = useCallback(() => {
     setSettingsChanged((i) => i + 1)
   }, [])

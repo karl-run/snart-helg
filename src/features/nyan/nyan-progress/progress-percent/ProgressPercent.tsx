@@ -1,5 +1,4 @@
 import React, { type JSX } from 'react'
-import Image from 'next/image'
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import { format } from 'date-fns'
@@ -7,8 +6,7 @@ import { nb } from 'date-fns/locale'
 
 import sparkles from '../images/sparkles.gif'
 import styles from './ProgressPercent.module.css'
-import Head from 'next/head'
-import { getRerenderSpeed } from '../../../utils/localStorage'
+import { getRerenderSpeed } from '../../../../utils/localStorage.ts'
 
 interface Props {
   feelingProgress: number
@@ -21,12 +19,9 @@ const ProgressPercent = ({ feelingProgress, secondsToHelg }: Props): JSX.Element
 
   return (
     <div className={styles.root}>
-      <Head>
-        <meta property="og:description" content={`Det er ${progressText} helg`} />
-      </Head>
       {isHelg && (
         <div className={styles.sparklesContainer}>
-          <Image src={sparkles} alt="forverkeri" />
+          <img src={sparkles.src} alt="forverkeri" />
         </div>
       )}
       {!isHelg ? (

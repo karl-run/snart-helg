@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import styles from './NuclearCountdown.module.css'
-import { useIntervalToWeekend } from '../../hooks/useTime'
+import { useIntervalToWeekend } from '../../hooks/useTime.ts'
 
 function NuclearCountdown(): JSX.Element | null {
   const { isHelg, interval } = useIntervalToWeekend()

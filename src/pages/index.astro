@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets'
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import styles from './index.module.css'
+import nyanThumb from '../thumbnails/nyan.png'
+import timerThumb from '../thumbnails/timer.png'
+---
+
+<BaseLayout>
+  <main class={styles.container}>
+    <a href="/nyan">
+      <Image src={nyanThumb} alt="Nyan cat countdown" width={300} />
+      <h1>Nyan</h1>
+    </a>
+    <a href="/timer">
+      <Image src={timerThumb} alt="Timer countdown" width={300} />
+      <h1>Timer</h1>
+    </a>
+  </main>
+</BaseLayout>

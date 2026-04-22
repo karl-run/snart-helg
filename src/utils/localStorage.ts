@@ -24,7 +24,7 @@ export function isLocalStorageAvailable(): boolean {
 }
 
 export function getRerenderSpeed(): number {
-  if (!process.browser) return 1
+  if (typeof window === 'undefined') return 1
 
   const speed = +safeGet('speed', '1')
 

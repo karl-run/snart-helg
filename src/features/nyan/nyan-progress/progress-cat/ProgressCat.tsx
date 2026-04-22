@@ -1,9 +1,7 @@
 import type { JSX } from 'react'
 
-import Image from 'next/image'
-
 import nyanHead from '../images/nyan_head.gif'
-import Countdown from '../countdown/Countdown'
+import Countdown from '../countdown/Countdown.tsx'
 
 import styles from './ProgressCat.module.css'
 
@@ -32,7 +30,7 @@ function ProgressCat({ progress, fridayEow, isHelg, now }: Props): JSX.Element {
       >
         <div className={styles.cat}>
           <div className={styles.nyanHead}>
-            <Image src={nyanHead} alt="nyan cat" width={70} height={41} unoptimized />
+            <img src={nyanHead.src} alt="nyan cat" width={70} height={41} />
             <Countdown className={styles.countdown} isHelg={isHelg} fridayEow={fridayEow} now={now} />
           </div>
         </div>

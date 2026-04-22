@@ -1,0 +1,41 @@
+---
+import { Font } from 'astro:assets'
+
+import '../styles/globals.css'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'Snart helg?',
+  description = 'Er det snart helg? Kanskje.',
+} = Astro.props
+---
+
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <meta property="og:url" content="https://helg.karl.run" />
+    <meta property="og:title" content={title} />
+    <meta property="og:site_name" content="Snart Helg?" />
+    <Font cssVariable="--font-source-code-pro" />
+  </head>
+  <body>
+    <slot />
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "493807fafdc44cd8bb8ef13c64082007"}'
+    ></script>
+  </body>
+</html>

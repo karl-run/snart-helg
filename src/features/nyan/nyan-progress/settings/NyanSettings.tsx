@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState, type JSX } from 'react
 import { millisecondsToMinutes, millisecondsToSeconds } from 'date-fns'
 import cn from 'classnames'
 
-import { getRerenderSpeed, isLocalStorageAvailable, safeGet, safeSet } from '../../../utils/localStorage'
+import { getRerenderSpeed, isLocalStorageAvailable, safeGet, safeSet } from '../../../../utils/localStorage.ts'
 
 import styles from './NyanSettings.module.css'
 

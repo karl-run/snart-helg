@@ -1,4 +1,4 @@
-import { add, differenceInSeconds, endOfWeek, intervalToDuration, startOfWeek, Duration, parseISO } from 'date-fns'
+import { add, differenceInSeconds, endOfWeek, intervalToDuration, startOfWeek, type Duration } from 'date-fns'
 import useInterval from './useInterval'
 import { getEowHours, getRerenderSpeed } from '../utils/localStorage'
 import { useEffect, useMemo, useState } from 'react'
@@ -44,7 +44,6 @@ export function useTime(invalidateMemoCount: number = 0): UseTime {
       endDate: time.fridayEow,
     }
     //  Use rerender count to trigger a new render when it changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rerenderCount, invalidateMemoCount])
 
   useIncreasedRerenderSpeed(memoizedValues.secondsToHelg, setState)
@@ -72,7 +71,6 @@ export function useIntervalToWeekend(): {
       interval,
     }
     //  Use rerender count to trigger a new render when it changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rerenderCount])
 
   return memoizedValues
